@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="LectureroomDao">
+	<select id="List" resultType="LectureroomDto">
+		SELECT * FROM LECTUREROOM
+		ORDER BY LectureroomId
+	</select>
+	
+	<select id="select" parameterType="int" resultType="LectureroomDto">
+		SELECT * FROM
+		LECTUREROOM WHERE LectureroomId = #{LectureroomId}
+	</select>
+	
+	<insert id="insert" parameterType="LectureroomDto">
+		INSERT INTO LECTUREROOM
+		(LectureroomId, LectureId, mentorId, LectureroomTitle, LectureroomContent, LectureroomReplystatus, LectureroomReply, LectureroomRegdate, LectureroomFname)
+		values
+		(LECTUREROOM_SEQ.nextval,
+			#{LectureId}, #{mentorId}, #{LectureroomTitle}, #{LectureroomContent}, 0, #{LectureroomReply}, SYSDATE, #{LectureroomFname})
+		<selectKey keyProperty="LectureroomId" resultType="Integer">
+		</selectKey>
+	</insert>
+	
+	
+</mapper>
